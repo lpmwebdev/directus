@@ -128,6 +128,11 @@ function onClick() {
 			opacity var(--fast) var(--transition),
 			color var(--fast) var(--transition);
 
+		[dir='rtl'] & {
+			right: unset;
+			left: 0;
+		}
+
 		.v-icon {
 			pointer-events: none;
 		}

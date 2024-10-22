@@ -490,6 +490,13 @@ function revert(values: Record<string, any>) {
 			object-fit: cover;
 		}
 
+		html[dir='rtl'] {
+			@media (min-width: 600px) {
+				margin-right: auto;
+				margin-left: 22px;
+			}
+		}
+
 		@media (min-width: 600px) {
 			width: 144px;
 			height: 144px;

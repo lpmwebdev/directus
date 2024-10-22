@@ -72,6 +72,11 @@ const active = ref(false);
 .actions .action-buttons > :deep(*:not(:last-child)) {
 	display: none;
 	margin-right: 8px;
+
+	[dir='rtl'] & {
+		margin-right: unset;
+		margin-left: 8px;
+	}
 }
 
 .actions .action-buttons .sidebar-toggle {

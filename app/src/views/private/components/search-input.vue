@@ -260,10 +260,19 @@ function emitValue() {
 
 	.icon-search {
 		margin: 0 4px 0 9px; // visually center in closed filter
+
+		[dir='rtl'] & {
+			margin: 0 9px 0 0;
+		}
 	}
 
 	.icon-filter {
 		margin-right: 8px;
+
+		[dir='rtl'] & {
+			margin-right: unset;
+			margin-left: 8px;
+		}
 	}
 
 	&:focus-within,
@@ -314,7 +323,8 @@ function emitValue() {
 		}
 
 		@media (min-width: 1260px) {
-			width: 420px; /* blaze it */
+			width: 420px;
+			/* blaze it */
 		}
 	}
 

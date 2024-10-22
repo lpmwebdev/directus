@@ -671,6 +671,10 @@ async function exportDataFiles() {
 	background-color: var(--theme--background-normal);
 	border-radius: var(--theme--border-radius);
 
+	[dir='rtl'] & {
+		margin-left: unset;
+	}
+
 	&.has-file {
 		background-color: var(--theme--primary-background);
 	}
