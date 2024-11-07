@@ -14,6 +14,7 @@ export type DriverGCSConfig = {
 	bucket: string;
 	apiEndpoint?: string;
 	tus?: {
+		enabled: boolean;
 		chunkSize?: number;
 	};
 };
@@ -33,20 +34,15 @@ export class DriverGCS implements TusDriver {
 		const storage = new Storage(storageOptions);
 		this.bucket = storage.bucket(bucket);
 
-		this.preferredChunkSize = this.getPreferredChunkSize(tus);
-	}
-
-	private getPreferredChunkSize(tus?: { chunkSize?: number }) {
-		if (!tus?.chunkSize) {
-			return DEFAULT_CHUNK_SIZE;
-		}
+		this.preferredChunkSize = tus?.chunkSize || DEFAULT_CHUNK_SIZE;
 
 		// chunkSize must be powers of 2 starting at 256kb
-		if (tus.chunkSize < MINIMUM_CHUNK_SIZE || Math.log2(tus.chunkSize) % 1 !== 0) {
+		if (
+			tus?.enabled &&
+			(this.preferredChunkSize < MINIMUM_CHUNK_SIZE || Math.log2(this.preferredChunkSize) % 1 !== 0)
+		) {
 			throw new Error('Invalid chunkSize provided');
 		}
-
-		return tus.chunkSize;
 	}
 
 	private fullPath(filepath: string) {
